@@ -1,12 +1,13 @@
 version: '3'
 services:
-    php80:
+    php:
+        container_name: php-${PHP_VERSION:-8.0}
         build:
-            context: ./php/php-80
+            context: ./php/${PHP_VERSION:-8.0}
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-php80
+        image: sail-php-${PHP_VERSION:-8.0}
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
