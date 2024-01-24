@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  node:
+    container_name: node-${NODE_VERSION:-latest}
+    image: node:${NODE_VERSION:-latest}
+    build: 
+      context: ./node
+      args: 
+        - NODE_VERSION=${NODE_VERSION}
+        - NODE_UID=${NODE_UID}
+        - NODE_GID=${NODE_GID}
+    volumes:
+     - ${NODE_WORK_DIR}:/home/node/projects
