@@ -1,5 +1,5 @@
 ARG NODE_VERSION
-FROM node:${NODE_VERSION}
+FROM node:${NODE_VERSION}-slim
 
 ARG NODE_UID=1000
 ARG NODE_GID=1000
@@ -15,10 +15,13 @@ RUN if ! getent group $GID > /dev/null 2>&1; then \
 RUN useradd --uid ${NODE_UID} --gid ${NODE_GID} --shell /bin/bash --create-home node
 
 # Add Tini To Handling Kernel Signals That won't wait 10 seconds for kill container
-ENV TINI_VERSION v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
-ENTRYPOINT ["/tini", "--"]
+# Update for mutil-arc @ref: https://github.com/dockersamples/example-voting-app/pull/268/files
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    curl \
+    tini \
+    && rm -rf /var/lib/apt/lists/*
+ENTRYPOINT ["/usr/bin/tini", "--"]
 
 USER node
 
