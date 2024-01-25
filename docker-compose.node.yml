@@ -10,4 +10,11 @@ services:
         - NODE_UID=${NODE_UID}
         - NODE_GID=${NODE_GID}
     volumes:
-     - ${NODE_WORK_DIR}:/home/node/projects
+      - ${NODE_WORK_DIR}:/home/node/projects
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    networks:
+        - dev-build
+networks:
+    dev-build:
+        name: dev-build
