@@ -26,9 +26,9 @@ ENTRYPOINT ["/usr/bin/tini", "--"]
 USER node
 
 RUN mkdir ~/.npm-global && \
-    npm config set prefix '~/.npm-global' && \
-    echo 'PATH=~/.npm-global/bin:$PATH' >> ~/.profile && \
-    . ~/.profile
+    npm config set prefix '~/.npm-global'
+
+ENV PATH="${PATH}:~/.npm-global/bin"
 
 WORKDIR /home/node
 CMD  ["tail", "-f", "/dev/null"]
