@@ -2,7 +2,7 @@ version: '3.9'
 services:
   node:
     container_name: node-${NODE_VERSION:-latest}
-    image: node:${NODE_VERSION:-latest}
+    image: dev-node:${NODE_VERSION:-latest}
     build: 
       context: ./node
       args: 
