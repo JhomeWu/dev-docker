@@ -13,6 +13,8 @@ services:
         ports:
             - '${PHP_PORT:-9000}:9000'
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        volumes:
+            - 'dev-build-php-project:/var/www/html'
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
@@ -23,3 +25,6 @@ services:
 networks:
     dev-build:
         name: dev-build
+volumes:
+    dev-build-php-project:
+        driver: local
