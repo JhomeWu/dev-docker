@@ -1,0 +1,34 @@
+{
+  "name": "PHP Container",
+  "dockerComposeFile": ["../../docker-compose.php.yml"],
+  "service": "php",
+  "shutdownAction": "none",
+  "workspaceFolder": "/var/www/html",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "workbench.editor.wrapTabs": true,
+      },
+      "extensions": [
+        "github.copilot",
+        "github.copilot-chat",
+        "streetsidesoftware.code-spell-checker",
+        "donjayamanne.githistory",
+        "huizhou.githd",
+        "mhutchie.git-graph",
+        "wmaurer.change-case",
+        "tyriar.sort-lines",
+        "editorconfig.editorconfig",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid",
+        "formulahendry.auto-close-tag",
+        "sirtori.indenticator",
+        "devsense.composer-php-vscode",
+        "devsense.phptools-vscode",
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "amiralizadeh9480.laravel-extra-intellisense",
+      ]
+    }
+  }
+}

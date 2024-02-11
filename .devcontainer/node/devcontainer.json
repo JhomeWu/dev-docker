@@ -1,0 +1,31 @@
+{
+  "name": "Node Container",
+  "dockerComposeFile": [
+    "../../docker-compose.node.yml"
+  ],
+  "service": "node",
+  "shutdownAction": "none",
+  "workspaceFolder": "/home/node/projects",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "workbench.editor.wrapTabs": true,
+      },
+      "extensions": [
+        "github.copilot",
+        "github.copilot-chat",
+        "streetsidesoftware.code-spell-checker",
+        "donjayamanne.githistory",
+        "huizhou.githd",
+        "mhutchie.git-graph",
+        "wmaurer.change-case",
+        "tyriar.sort-lines",
+        "editorconfig.editorconfig",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid",
+        "formulahendry.auto-close-tag",
+        "sirtori.indenticator",
+      ]
+    }
+  }
+}
