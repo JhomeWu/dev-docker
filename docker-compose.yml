@@ -1,53 +1,53 @@
 version: '3'
 services:
-    nginx:
-        image: 'nginx:1.17'
-        container_name: dev-build-nginx
-        ports:
-            - '${NGINX_HTTP_PORT:-80}:80'
-        volumes:
-            - './nginx/nginx.conf:/etc/nginx/nginx.conf'
-            - './nginx/sites-enabled:/etc/nginx/sites-enabled'
-        networks:
-            - dev-build
-        deploy:
-            restart_policy:
-                condition: on-failure
-                delay: 5s
-                max_attempts: 2
-                window: 120s
-    mysql:
-        image: 'mysql/mysql-server:8.0'
-        container_name: dev-build-mysql
-        ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
-        environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: '%'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ALLOW_EMPTY_PASSWORD: 1
-        volumes:
-            - 'dev-build-mysql:/var/lib/mysql'
-        networks:
-            - dev-build
-        deploy:
-            restart_policy:
-                condition: on-failure
-                delay: 5s
-                max_attempts: 2
-                window: 120s
-        healthcheck:
-            test:
-                - CMD
-                - mysqladmin
-                - ping
-                - '-p${DB_PASSWORD}'
-            retries: 3
-            timeout: 5s
+  nginx:
+    image: 'nginx:1.17'
+    container_name: dev-build-nginx
+    ports:
+      - '${NGINX_HTTP_PORT:-80}:80'
+    volumes:
+      - './nginx/nginx.conf:/etc/nginx/nginx.conf'
+      - './nginx/sites-enabled:/etc/nginx/sites-enabled'
+    networks:
+      - dev-build
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 2
+        window: 120s
+  mysql:
+    image: 'mysql/mysql-server:8.0'
+    container_name: dev-build-mysql
+    ports:
+      - '${FORWARD_DB_PORT:-3306}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - 'dev-build-mysql:/var/lib/mysql'
+    networks:
+      - dev-build
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 2
+        window: 120s
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - '-p${DB_PASSWORD}'
+      retries: 3
+      timeout: 5s
 networks:
-    dev-build:
-        name: dev-build
+  dev-build:
+    name: dev-build
 volumes:
-    dev-build-mysql:
-        driver: local
+  dev-build-mysql:
+    driver: local

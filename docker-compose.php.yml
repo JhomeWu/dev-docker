@@ -1,32 +1,32 @@
 version: '3'
 services:
-    php:
-        container_name: php-${PHP_VERSION:-8.0}
-        build:
-            context: ./php/${PHP_VERSION:-8.0}
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: sail-php-${PHP_VERSION:-8.0}
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        ports:
-            - '${PHP_PORT:-9000}:9000'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
-        volumes:
-            - 'dev-build-php-project:/var/www/html'
-            - ${SSH_AUTH_SOCK}:/ssh-agent
-        environment:
-            WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${PHP_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${PHP_XDEBUG_CONFIG:-client_host=host.docker.internal}'
-            SSH_AUTH_SOCK: '/ssh-agent'
-        networks:
-            - dev-build
+  php:
+    container_name: php-${PHP_VERSION:-8.0}
+    build:
+      context: ./php/${PHP_VERSION:-8.0}
+      dockerfile: Dockerfile
+      args:
+        WWWGROUP: '${WWWGROUP}'
+    image: sail-php-${PHP_VERSION:-8.0}
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    ports:
+      - '${PHP_PORT:-9000}:9000'
+      - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+    volumes:
+      - 'dev-build-php-project:/var/www/html'
+      - ${SSH_AUTH_SOCK}:/ssh-agent
+    environment:
+      WWWUSER: '${WWWUSER}'
+      LARAVEL_SAIL: 1
+      XDEBUG_MODE: '${PHP_XDEBUG_MODE:-off}'
+      XDEBUG_CONFIG: '${PHP_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+      SSH_AUTH_SOCK: '/ssh-agent'
+    networks:
+      - dev-build
 networks:
-    dev-build:
-        name: dev-build
+  dev-build:
+    name: dev-build
 volumes:
-    dev-build-php-project:
-        driver: local
+  dev-build-php-project:
+    driver: local
