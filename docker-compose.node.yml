@@ -9,8 +9,11 @@ services:
         - NODE_VERSION=${NODE_VERSION}
         - NODE_UID=${NODE_UID}
         - NODE_GID=${NODE_GID}
+    environment:
+      - SSH_AUTH_SOCK: '/ssh-agent'
     volumes:
       - dev-build-node-project:/home/node/projects
+      - ${SSH_AUTH_SOCK}:/ssh-agent
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     networks:
