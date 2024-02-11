@@ -3,9 +3,9 @@ services:
   node:
     container_name: node-${NODE_VERSION:-latest}
     image: dev-node:${NODE_VERSION:-latest}
-    build: 
+    build:
       context: ./node
-      args: 
+      args:
         - NODE_VERSION=${NODE_VERSION}
         - NODE_UID=${NODE_UID}
         - NODE_GID=${NODE_GID}

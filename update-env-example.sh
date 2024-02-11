@@ -10,7 +10,7 @@
 nextLineDefault=''
 # Read the .env file line by line
 cat .env | while read -r line ; do
-    
+
     # init output variable
     output=$line
 
