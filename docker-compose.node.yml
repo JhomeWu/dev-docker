@@ -9,8 +9,6 @@ services:
         - NODE_VERSION=${NODE_VERSION}
         - NODE_UID=${NODE_UID}
         - NODE_GID=${NODE_GID}
-    volumes:
-      - ${NODE_WORK_DIR}:/home/node/projects
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     networks:
